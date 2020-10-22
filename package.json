@@ -1,0 +1,32 @@
+{
+  "name": "mail-server",
+  "version": "1.0.0",
+  "description": "Simple rest api to send emails",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dasunx/node-mail-server.git"
+  },
+  "keywords": [
+    "Email",
+    "sender",
+    "mail",
+    "server"
+  ],
+  "author": "Dasun Ekanayake",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dasunx/node-mail-server/issues"
+  },
+  "homepage": "https://github.com/Dasunx/node-mail-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "nodemailer": "^6.4.14"
+  }
+}
