@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
-const handlebars = require('handlebars');
 require('dotenv').config();
+
+const invitationRoutes = require('./routes/invitation-routes');
 
 const app = express();
 //cors to handle origin headers
@@ -12,6 +12,7 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.send('Im up and running!'));
+app.use('/api/invitation', invitationRoutes);
 
 const PORT = process.env.PORT || 5000;
 
