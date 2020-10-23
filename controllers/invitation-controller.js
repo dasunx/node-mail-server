@@ -28,13 +28,10 @@ const sendInvitation = async (req, res, next) => {
 		let transporter = nodemailer.createTransport({
 			host: process.env.SMTP_SERVER,
 			port: process.env.SMTP_PORT || 587,
-			secure: process.env.SMTP_SECURE || false,
+			secure: process.env.SMTP_SECURE || true,
 			auth: {
 				user: process.env.EMAIL,
 				pass: process.env.PASSWORD
-			},
-			tls: {
-				ciphers: 'SSLv3'
 			}
 		});
 		console.log(__dirname);
@@ -63,13 +60,16 @@ const sendInvitation = async (req, res, next) => {
 						html: htmltosend
 					});
 					console.log('Message send', info.messageId);
+					return res.status(200).json({ msg: 'success' });
 				} catch (error) {
 					console.log(error);
+					return res.status(500).json({ msg: 'error' });
 				}
 			}
 		);
 	} catch (error) {
 		console.log(error);
+		return res.status(500).json({ msg: 'error' });
 	}
 };
 
