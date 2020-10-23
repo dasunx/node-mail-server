@@ -32,9 +32,6 @@ const sendInvitation = async (req, res, next) => {
 			auth: {
 				user: process.env.EMAIL,
 				pass: process.env.PASSWORD
-			},
-			tls: {
-				ciphers: 'SSLv3'
 			}
 		});
 		console.log(__dirname);
