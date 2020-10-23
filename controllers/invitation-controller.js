@@ -53,7 +53,7 @@ const sendInvitation = async (req, res, next) => {
 					};
 					const htmltosend = temp(replacements);
 					let info = await transporter.sendMail({
-						from: process.env.EMAIL,
+						from: 'hi@eventplanner.com',
 						to: senderMail,
 						subject: 'Invitation',
 						text: msg,
