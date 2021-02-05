@@ -78,8 +78,30 @@ const contact = async (req, res, next) => {
 			html: `<b>${name}</b> </br> <p>${message}</p> </br> <p>my email ${email}</p>`
 		});
 
-		console.log('Message sent');
-		return res.status(200).json({ msg: 'Successfully sent', code: 200 });
+		readHTMLFile(
+			path.join(__dirname, '../mail-body/mailrec/index.html'),
+			async function (err, html) {
+				try {
+					const temp = handlebars.compile(html);
+					const replacements = {
+						name: name
+					};
+					const htmltosend = temp(replacements);
+					let info = await transporter.sendMail({
+						from: 'info@dasunx.com',
+						to: email,
+						subject: 'Mail confirmation',
+						text: `Hello ${name}. we got your email. will contact you soon`,
+						html: htmltosend
+					});
+					console.log('Message send', info.messageId);
+					return res.status(200).json({ msg: 'success', code: 200 });
+				} catch (error) {
+					console.log(error);
+					return res.status(500).json({ msg: 'error', code: 500 });
+				}
+			}
+		);
 	} catch (error) {
 		return res
 			.status(500)
