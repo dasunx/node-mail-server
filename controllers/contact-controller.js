@@ -83,7 +83,7 @@ const contact = async (req, res, next) => {
 	} catch (error) {
 		return res
 			.status(500)
-			.json({ msg: 'server error Please try again', code: 500 });
+			.json({ msg: 'server error Please try again' + error, code: 500 });
 	}
 };
 exports.contact = contact;
